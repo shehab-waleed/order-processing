@@ -92,6 +92,17 @@ Base path: `/api/v1`. All routes except auth require an `Authorization: Bearer <
 
 **Query params for list endpoints:** `status` (`pending`, `successful`, `failed` for payments) and `per_page` (1–100, default 15).
 
+## Postman Collection
+
+A ready-to-import collection lives at [`Order-Payment-API.postman_collection.json`](Order-Payment-API.postman_collection.json).
+
+Import it via **Postman → Import** and select the file. It contains:
+
+- **Folders** grouped by functionality: Authentication, Orders, Payments.
+- **Saved examples** under each request (success and error cases) — open the request's *Examples* dropdown to view them.
+- **Collection-level Bearer auth** using a `{{token}}` variable; the Register and Login requests capture the token automatically, and Create Order captures `{{order_id}}`, so you can run the requests top to bottom without copy-pasting.
+- Configurable variables: `base_url` (defaults to `http://localhost:8000/api/v1`), `token`, `order_id`, `payment_id`.
+
 ## Running Locally (Composer + Octane)
 
 **Requirements:** PHP 8.4, Composer, MySQL 8.
