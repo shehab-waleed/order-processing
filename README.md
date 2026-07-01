@@ -138,9 +138,19 @@ Import it via **Postman → Import** and select the file. It contains:
 
 ## Running with Docker
 
-A production-style image (FrankenPHP + Octane) and a MySQL service are provided. Container credentials live in `.env.docker`.
+A production-style image (FrankenPHP + Octane) and a MySQL service are provided. Container credentials are read from `.env.docker` (referenced by `docker-compose.yml`).
 
-1. **Build and start:**
+1. **Create the Docker env file** by copying the example, then fill in the secrets:
+   ```bash
+   cp .env.docker.example .env.docker
+   ```
+   In `.env.docker`, set at least:
+   - `JWT_SECRET` — generate one with `php artisan jwt:secret --show` (or any random string).
+   - `CREDIT_CARD_API_KEY` / `CREDIT_CARD_SECRET` — the payment gateway credentials.
+
+   `APP_KEY` and the `DB_*` values are pre-filled to match the bundled MySQL service, so they work out of the box.
+
+2. **Build and start:**
    ```bash
    docker compose up --build
    ```
@@ -149,7 +159,7 @@ A production-style image (FrankenPHP + Octane) and a MySQL service are provided.
    - API: `http://localhost:8000/api/v1`
    - MySQL is exposed on host port **3307** (container `mysql:3306`).
 
-2. **Stop:**
+3. **Stop:**
    ```bash
    docker compose down          # keep data
    docker compose down -v       # also remove the database volume
