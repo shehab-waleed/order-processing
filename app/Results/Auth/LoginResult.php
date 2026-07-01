@@ -23,7 +23,7 @@ final class LoginResult extends Result
         return new self(true, $user, $token, $refreshToken);
     }
 
-    public static function invalidCredentials(): self
+    public static function failedDueInvalidCredentials(): self
     {
         return new self(false, failureReason: 'Invalid credentials');
     }

@@ -29,7 +29,7 @@ final class AuthService
         $rawToken = JWTAuth::attempt($data->credentials());
 
         if ($rawToken === false) {
-            return LoginResult::invalidCredentials();
+            return LoginResult::failedDueInvalidCredentials();
         }
 
         $user = User::where('email', $data->email)->firstOrFail();

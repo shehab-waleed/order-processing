@@ -20,6 +20,8 @@
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="JWT_SECRET" value="testingjwtsecretkeyfortestsuiteonly1234567890"/>
+        <env name="CREDIT_CARD_API_KEY" value="cc_test_key"/>
+        <env name="CREDIT_CARD_SECRET" value="cc_test_secret"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="BROADCAST_CONNECTION" value="null"/>

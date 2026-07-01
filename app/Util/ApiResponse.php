@@ -10,9 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiResponse
 {
     /**
-     * @param array<mixed>|LengthAwarePaginator<int, mixed> $data
-     * @param class-string<JsonResource>|null $resource
-     * @param array<mixed> $errors
+     * @template TValue
+     *
+     * @param  array<mixed>|LengthAwarePaginator<int, TValue>  $data
+     * @param  class-string<JsonResource>|null  $resource
+     * @param  array<mixed>  $errors
      */
     public static function send(
         int $code = Response::HTTP_OK,
@@ -41,8 +43,10 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed>|LengthAwarePaginator<int, mixed> $data
-     * @param class-string<JsonResource>|null $resource
+     * @template TValue
+     *
+     * @param  array<mixed>|LengthAwarePaginator<int, TValue>  $data
+     * @param  class-string<JsonResource>|null  $resource
      */
     public static function success(
         string $message = 'Success response',
@@ -53,8 +57,8 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed>|LengthAwarePaginator<int, mixed> $data
-     * @param class-string<JsonResource>|null $resource
+     * @param  array<mixed>|LengthAwarePaginator<int, mixed>  $data
+     * @param  class-string<JsonResource>|null  $resource
      */
     public static function successPaginated(
         string $message = 'Success response',
@@ -65,8 +69,8 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed>|LengthAwarePaginator<int, mixed> $data
-     * @param class-string<JsonResource>|null $resource
+     * @param  array<mixed>|LengthAwarePaginator<int, mixed>  $data
+     * @param  class-string<JsonResource>|null  $resource
      */
     public static function created(
         string $message = 'Resource created successfully',
@@ -77,7 +81,7 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed> $errors
+     * @param  array<mixed>  $errors
      */
     public static function badRequest(string $message, array $errors = []): JsonResponse
     {
@@ -105,8 +109,8 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed> $errors
-     * @param class-string<JsonResource>|null $resource
+     * @param  array<mixed>  $errors
+     * @param  class-string<JsonResource>|null  $resource
      */
     public static function validationError(string $message, array $errors = [], ?string $resource = null): JsonResponse
     {
@@ -114,7 +118,7 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed> $errors
+     * @param  array<mixed>  $errors
      */
     public static function unProcessableEntity(string $message, array $errors = []): JsonResponse
     {
@@ -136,7 +140,9 @@ class ApiResponse
     }
 
     /**
-     * @param LengthAwarePaginator<int, mixed> $paginator
+     * @template TValue
+     *
+     * @param  LengthAwarePaginator<int, TValue>  $paginator
      * @return array{current_page: int, per_page: int, total: int, last_page: int}
      */
     protected static function getPaginationMeta(LengthAwarePaginator $paginator): array
@@ -150,8 +156,10 @@ class ApiResponse
     }
 
     /**
-     * @param array<mixed>|LengthAwarePaginator<int, mixed> $data
-     * @param class-string<JsonResource>|null $resource
+     * @template TValue
+     *
+     * @param  array<mixed>|LengthAwarePaginator<int, TValue>  $data
+     * @param  class-string<JsonResource>|null  $resource
      * @return array{meta: array{current_page: int, per_page: int, total: int, last_page: int}|null, items: mixed}
      */
     protected static function prepareData(array|LengthAwarePaginator $data, ?string $resource): array
