@@ -25,4 +25,25 @@ class PaymentFactory extends Factory
             'amount' => fake()->numberBetween(1000, 50000),
         ];
     }
+
+    public function pending(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => PaymentStatus::Pending,
+        ]);
+    }
+
+    public function successful(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => PaymentStatus::Successful,
+        ]);
+    }
+
+    public function failed(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => PaymentStatus::Failed,
+        ]);
+    }
 }

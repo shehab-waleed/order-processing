@@ -19,6 +19,7 @@ class PaymentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order_id' => $this->order_id,
             'status' => $this->status->value,
             'payment_method' => $this->payment_method->value,
             'amount' => Money::fromMinor($this->amount)->toFormatted(),
